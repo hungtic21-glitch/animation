@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 1 - CSS Hover & Transition</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-code"></i> Lab 1: CSS Hover & Transition Cơ Bản</h1>
+            <p class="subtitle">Thực hành hiệu ứng hover với CSS transitions</p>
+        </header>
+
+        <!-- Bài 1: Nút bấm -->
+        <section class="section">
+            <div class="buttons-container">
+                <button class="btn btn-primary">
+                    <i class="fas fa-home"></i> Nút chính
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-star"></i> Nút phụ
+                </button>
+                <button class="btn btn-accent">
+                    <i class="fas fa-rocket"></i> Nút nhấn mạnh
+                </button>
+            </div>
+            <div class="description">
+                <p><strong>Cách làm:</strong> Sử dụng CSS transition cho thuộc tính background-color và color với thời gian 0.5s.</p>
+            </div>
+        </section>
+
+        <!-- Bài 2: Gallery ảnh -->
+        <section class="section">
+            <div class="gallery-horizontal">
+                <div class="image-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Phong cảnh núi">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-mountain"></i> Phong cảnh núi</h3>
+                                <p>Thiên nhiên hùng vĩ với những đỉnh núi phủ sương</p>
+                                <div class="image-tags">
+                                    <span class="tag"><i class="fas fa-tree"></i> Thiên nhiên</span>
+                                    <span class="tag"><i class="fas fa-cloud"></i> Phong cảnh</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Rừng cây">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-tree"></i> Rừng cây xanh</h3>
+                                <p>Không khí trong lành và thiên nhiên tươi mát</p>
+                                <div class="image-tags">
+                                    <span class="tag"><i class="fas fa-leaf"></i> Xanh</span>
+                                    <span class="tag"><i class="fas fa-wind"></i> Trong lành</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Hồ nước">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-water"></i> Hồ nước trong xanh</h3>
+                                <p>Mặt nước phản chiếu bầu trời và cây cối</p>
+                                <div class="image-tags">
+                                    <span class="tag"><i class="fas fa-water"></i> Hồ</span>
+                                    <span class="tag"><i class="fas fa-sun"></i> Phản chiếu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="image-card">
+                    <div class="image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1439853949127-fa647821eba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Hoàng hôn">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <h3><i class="fas fa-sun"></i> Hoàng hôn tuyệt đẹp</h3>
+                                <p>Bầu trời rực rỡ khi mặt trời lặn</p>
+                                <div class="image-tags">
+                                    <span class="tag"><i class="fas fa-palette"></i> Màu sắc</span>
+                                    <span class="tag"><i class="fas fa-sunset"></i> Hoàng hôn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <p><strong>Cách làm:</strong> Sử dụng CSS animation kích hoạt khi hover để tạo hiệu ứng chuyển động cho ảnh.</p>
+            </div>
+        </section>
+
+        <!-- Bài 3: Menu điều hướng -->
+        <section class="section">
+            <nav class="navbar">
+                <ul class="nav-menu">
+                    <li><a href="#"><i class="fas fa-home"></i> Trang chủ</a></li>
+                    <li><a href="#"><i class="fas fa-box"></i> Sản phẩm</a></li>
+                    <li><a href="#"><i class="fas fa-cogs"></i> Dịch vụ</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> Tin tức</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div class="description">
+                <p><strong>Cách làm:</strong> Sử dụng pseudo-element ::after với transition cho width để tạo hiệu ứng gạch chân chạy.</p>
+            </div>
+        </section>
+
+        <!-- Bài 4: Card sản phẩm -->
+        <section class="section">
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-badge">Mới</span>
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Tai nghe">
+                    </div>
+                    <div class="card-content">
+                        <h3>Tai nghe cao cấp</h3>
+                        <p>Tai nghe chụp tai với chất lượng âm thanh vượt trội, thiết kế êm ái.</p>
+                        <div class="card-price">1.250.000đ</div>
+                        <button class="card-btn">
+                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-badge">Bán chạy</span>
+                        <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Máy ảnh">
+                    </div>
+                    <div class="card-content">
+                        <h3>Máy ảnh DSLR</h3>
+                        <p>Máy ảnh chuyên nghiệp với cảm biến full-frame, phù hợp cho nhiếp ảnh gia.</p>
+                        <div class="card-price">22.500.000đ</div>
+                        <button class="card-btn">
+                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <span class="card-badge">Giảm 15%</span>
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Đồng hồ thông minh">
+                    </div>
+                    <div class="card-content">
+                        <h3>Đồng hồ thông minh</h3>
+                        <p>Theo dõi sức khỏe, thông báo thông minh, pin lâu dài đến 7 ngày.</p>
+                        <div class="card-price">4.800.000đ</div>
+                        <button class="card-btn">
+                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <p><strong>Cách làm:</strong> Sử dụng transform: translateY() và box-shadow để tạo hiệu ứng nổi lên.</p>
+            </div>
+        </section>
+
+        <!-- Bài 5: Banner CHỈ VỚI DÒNG CHỮ CHẠY -->
+        <section class="section">
+            <div class="banner">
+                <div class="banner-content">
+                    <!-- Dòng chữ chạy từ trái qua phải -->
+                    <div class="running-text-container">
+                        <h1 class="running-text">
+                            <span class="text-slide">Chào mừng đến với Lab 1</span>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="description">
+                <p><strong>Cách làm:</strong> Sử dụng CSS animation với keyframes để tạo hiệu ứng chữ chạy từ trái qua phải.</p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <p>WE-MĐ06 - Thiết kế Website Động (Animation) | Lab 1</p>
+                <p class="instruction">Hover vào các phần tử để xem hiệu ứng</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
