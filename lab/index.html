@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WE-MĐ06 - Thiết kế Website Động</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            animation: fadeInDown 1s ease;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .labs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .lab-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lab-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .lab-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .lab-card:hover::before {
+            left: 100%;
+        }
+
+        .lab-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .lab-card:hover .lab-number {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .lab-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .lab-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .lab-topics {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .lab-topics li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .lab-topics li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .lab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .lab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #764ba2, #667eea);
+        }
+
+        .lab-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .lab-btn:hover i {
+            transform: translateX(5px);
+        }
+
+        .lab-status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .completed {
+            background: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .in-progress {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        .upcoming {
+            background: rgba(148, 163, 184, 0.2);
+            color: #94a3b8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-info {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .instructions {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lab-card {
+            animation: fadeInUp 0.6s ease backwards;
+        }
+
+        .lab-card:nth-child(1) { animation-delay: 0.1s; }
+        .lab-card:nth-child(2) { animation-delay: 0.2s; }
+        .lab-card:nth-child(3) { animation-delay: 0.3s; }
+        .lab-card:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .labs-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 10px;
+            }
+            
+            .lab-card {
+                padding: 30px 20px;
+            }
+            
+            .lab-number {
+                font-size: 4rem;
+            }
+            
+            .lab-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 40px 15px 30px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .lab-card {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-code"></i>Thiết kế Website Động</h1>
+        </header>
+
+        <div class="labs-grid">
+            <!-- Lab 1 -->
+            <div class="lab-card">
+                <div class="lab-number">01</div>
+                <a href="lab 1/index.html" class="lab-btn">
+                    <i class="fas fa-arrow-right"></i> Xem Lab 1
+                </a>
+            </div>
+
+            <!-- Lab 2 -->
+            <div class="lab-card">
+                <div class="lab-number">02</div>
+                <a href="lab 2/index.html" class="lab-btn">
+                    <i class="fas fa-arrow-right"></i> Xem Lab 2
+                </a>
+            </div>
+    </div>
+
+    <!-- Lab 4 -->
+    <div class="lab-card">
+        <div class="lab-number">04</div>
+        <a href="lab 4/index.html" class="lab-btn">
+            <i class="fas fa-arrow-right"></i> Xem Lab 4
+        </a>
+    </div>
+</div>
+
+
+    <script>
+        // Thêm hiệu ứng khi click vào card
+        document.querySelectorAll('.lab-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Chỉ chuyển hướng nếu không click vào nút
+                if (!e.target.closest('.lab-btn')) {
+                    const link = this.querySelector('.lab-btn');
+                    if (link && link.href) {
+                        window.location.href = link.href;
+                    }
+                }
+            });
+        });
+
+        // Thêm hiệu ứng hover cho toàn bộ card
+        document.querySelectorAll('.lab-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.03)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
