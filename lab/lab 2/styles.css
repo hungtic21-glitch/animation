@@ -1,0 +1,87 @@
+/* Tổng quan */
+section {
+    padding: 50px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Bài 1: Marquee [cite: 14, 15, 16, 17] */
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+}
+.marquee p {
+    display: inline-block;
+    animation: moveText 10s linear infinite;
+}
+@keyframes moveText {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* Bài 2: Rotate Box [cite: 24, 25, 26] */
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    margin: 20px auto;
+    animation: rotateBox 3s linear infinite;
+}
+@keyframes rotateBox {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Bài 3: Fade-in sequence [cite: 34, 35, 36, 37, 38] */
+.fade-container img {
+    width: 150px;
+    margin: 10px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+}
+.fade-container img:nth-child(1) { animation-delay: 0s; }
+.fade-container img:nth-child(2) { animation-delay: 0.5s; }
+.fade-container img:nth-child(3) { animation-delay: 1s; }
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Bài 4: Call to Action [cite: 46, 47, 48, 49] */
+.cta {
+    padding: 15px 30px;
+    font-size: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    animation: blink 1s infinite alternate;
+}
+@keyframes blink {
+    0% { background-color: red; transform: scale(1); }
+    50% { background-color: orange; transform: scale(1.05); }
+    100% { background-color: red; transform: scale(1); }
+}
+
+/* Bài 5: Slider tự động [cite: 57, 58, 59, 60, 61] */
+.slider {
+    width: 600px;
+    height: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.slide-track {
+    display: flex;
+    width: 300%; /* 3 ảnh mỗi ảnh 100% */
+    animation: slide 15s infinite;
+}
+.slide-track img {
+    width: 100%;
+}
+@keyframes slide {
+    0%, 30% { transform: translateX(0); }
+    33%, 63% { transform: translateX(-33.33%); }
+    66%, 96% { transform: translateX(-66.66%); }
+    100% { transform: translateX(0); }
+}
