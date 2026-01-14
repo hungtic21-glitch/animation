@@ -1,0 +1,498 @@
+/* Thiết lập cơ bản cho trang */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* --- CHỨC NĂNG 2: HERO SLIDER (PHẢI CÓ ĐỦ ĐOẠN NÀY) --- */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+}
+
+.slider-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+}
+
+.slide {
+    position: absolute;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* Ban đầu ẩn */
+    animation: sliderFade 15s infinite; /* Tổng 15 giây vòng lặp */
+}
+
+/* Link ảnh trực tiếp - Không dùng placeholder để tránh lỗi */
+.slide1 { 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+    url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920'); 
+}
+.slide2 { 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+    url('https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1920'); 
+    animation-delay: 5s; 
+}
+.slide3 { 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+    url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1920'); 
+    animation-delay: 10s; 
+}
+
+/* KEYFRAMES ĐIỀU KHIỂN CHUYỂN ĐỘNG (BẮT BUỘC) */
+@keyframes sliderFade {
+    0% { opacity: 0; }
+    5%, 33% { opacity: 1; } /* Hiện trong 5s */
+    38%, 100% { opacity: 0; } /* Ẩn để đổi ảnh */
+}
+
+/* Nội dung chữ hiện dần khi load trang (Lab 2) */
+.fade-in {
+    animation: fadeInEffect 2s forwards;
+}
+
+@keyframes fadeInEffect {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cta-btn {
+    padding: 15px 30px;
+    background: #e50914;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+}
+/* Thanh điều hướng chuyên nghiệp */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background: rgba(0, 0, 0, 0.85); /* Nền đen mờ sang trọng */
+    z-index: 1000;
+}
+
+.logo {
+    color: #e50914;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+}
+
+/* Hiệu ứng gạch chân chạy từ trái sang phải (Lab 1) */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #e50914;
+    transition: width 0.4s ease; /* Chạy mượt từ trái sang */
+}
+
+.nav-item:hover::after, .nav-item.active::after {
+    width: 100%;
+}
+.content-section {
+    padding: 80px 50px;
+    text-align: center;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Tự chia cột đẹp */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.movie-card {
+    background: #1f1f1f;
+    border-radius: 10px;
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition cho hover (Lab 1) */
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Hiệu ứng Hover Card: Nổi lên và đổ bóng (Chức năng 3) */
+.movie-card:hover {
+    transform: translateY(-15px); /* Nổi lên trên */
+    box-shadow: 0 10px 25px rgba(229, 9, 20, 0.5); /* Đổ bóng đỏ mờ */
+}
+/* Mặc định là Dark Mode (Nền tối, chữ sáng) */
+body {
+    background-color: #111;
+    color: #fff;
+    transition: background-color 0.5s, color 0.5s; /* Hiệu ứng chuyển đổi mượt mà */
+}
+
+/* Khi body có class 'light-mode' (Nền sáng, chữ tối) [cite: 56] */
+body.light-mode {
+    background-color: #f4f4f4;
+    color: #222;
+}
+
+/* Điều chỉnh thêm cho các card phim khi ở chế độ sáng để không bị phèn */
+body.light-mode .movie-card {
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+body.light-mode .content-section h2 {
+    color: #e50914; /* Giữ tiêu đề màu đỏ cho nổi bật */
+}
+/* Dàn hàng ngang các phim (Lab 1) [cite: 41] */
+.movie-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Tự xuống dòng nếu màn hình nhỏ */
+    padding: 40px 20px;
+}
+
+/* Làm card phim đẹp hơn */
+.movie-card {
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.4s, box-shadow 0.4s; /* [cite: 26] */
+    cursor: pointer;
+}
+
+/* Hiệu ứng nổi lên khi di chuột (Lab 1)  */
+.movie-card:hover {
+    transform: translateY(-15px); /* Nổi lên trên  */
+    box-shadow: 0 10px 20px rgba(229, 9, 20, 0.4); /* Đổ bóng đỏ mượt  */
+}
+
+.movie-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover; /* Ảnh không bị móp méo */
+}
+/* Thiết lập chuyển đổi mượt mà (Lab 1/Lab 3) [cite: 86, 92] */
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Khi bấm nút, class 'light-mode' sẽ được JS thêm vào body  */
+body.light-mode {
+    background-color: #ffffff !important; /* Nền trắng [cite: 88, 122] */
+    color: #111111 !important; /* Chữ đen [cite: 88, 122] */
+}
+
+/* Fix phèn cho các thẻ phim khi sang nền sáng */
+body.light-mode .movie-card {
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+/* Hiệu ứng chuyển màu mượt mà (Transition - Lab 1) [cite: 26, 54] */
+body {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Chế độ sáng (Light Mode)  */
+body.light-mode {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+}
+
+/* Fix Card phim khi ở nền sáng để không bị phèn */
+body.light-mode .movie-card {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+/* CSS cho con trỏ chuột trang trí (1.0 điểm cộng)  */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e50914;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+}
+/* 1. Định dạng nút cơ bản */
+.cta-btn {
+    padding: 15px 35px;
+    background-color: #e50914; /* Màu đỏ thương hiệu */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Hiệu ứng mượt mà (Lab 1) */
+    position: relative;
+    overflow: hidden;
+    animation: shakeEffect 2s infinite; /* Rung lắc liên tục (Lab 2) */
+}
+
+/* 2. Hiệu ứng rung lắc gây chú ý (Chức năng 4) [cite: 19, 53] */
+@keyframes shakeEffect {
+    0%, 100% { transform: scale(1); }
+    10%, 20% { transform: scale(1.1) rotate(-2deg); }
+    30%, 50%, 70% { transform: scale(1.1) rotate(2deg); }
+    40%, 60% { transform: scale(1.1) rotate(-2deg); }
+    80% { transform: scale(1); }
+}
+
+/* 3. Hiệu ứng khi Hover (Di chuột vào) [cite: 20, 54] */
+.cta-btn:hover {
+    background-color: #ff1f1f; /* Đổi màu sáng hơn */
+    transform: scale(1.2) !important; /* Phóng to và ghi đè animation rung */
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.6); /* Đổ bóng phát sáng */
+    animation: none; /* Dừng rung khi đang hover để người dùng dễ bấm */
+}
+
+/* 4. Hiệu ứng nhấp nháy khi Click (Active) [cite: 54] */
+.cta-btn:active {
+    transform: scale(0.9) !important; /* Nhấn lún xuống */
+    filter: brightness(0.8);
+}
+/* Chế độ sáng */
+body.light-mode {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+}
+
+/* Hiệu ứng rung lắc cho nút Xem Ngay (Chức năng 4)  */
+.cta-btn {
+    animation: shake 2s infinite; /* Rung lắc liên tục */
+}
+
+@keyframes shake {
+    0%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.1) rotate(-3deg); }
+    20%, 40% { transform: scale(1.1) rotate(3deg); }
+    50% { transform: scale(1); }
+}
+
+/* Con trỏ chuột trang trí [cite: 23, 57] */
+.cursor {
+    width: 20px; height: 20px;
+    border: 2px solid #e50914;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+}
+/* Màu cho chế độ sáng [cite: 22, 56] */
+body.light-mode {
+    background-color: #ffffff !important;
+    color: #111111 !important;
+}
+
+/* Biến các card phim thành màu sáng cho dễ nhìn [cite: 40] */
+body.light-mode .movie-card {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+/* Hình tròn chạy theo chuột (Điểm cộng) [cite: 23, 57] */
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e50914;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s ease-out;
+}
+/* Hiệu ứng gạch chân khi mục đó đang active (Scroll Spy) */
+.nav-item.active::after {
+    width: 100%;
+    background-color: #e50914; /* Màu đỏ như trong ảnh của bro */
+}
+
+.nav-item.active {
+    color: #e50914;
+}
+/* Trạng thái ban đầu: Ẩn và nằm thấp xuống 50px */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out; /* Hiệu ứng mượt mà */
+}
+
+/* Trạng thái khi JS thêm class 'visible' vào (khi cuộn tới) */
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.movie-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Khai báo transition trước */
+    cursor: pointer;
+}
+
+/* Hiệu ứng khi di chuột vào (Hover) */
+.movie-card:hover {
+    transform: translateY(-15px) scale(1.05); /* Nổi lên và phóng to 5% */
+    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.5); /* Đổ bóng màu đỏ mờ */
+}
+/* Layout cho danh sách phim */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 40px 50px;
+}
+
+.movie-card {
+    background: #1f1f1f;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.4s ease; /* Hiệu ứng mượt cho Hover */
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Hiệu ứng Hover Card (0.5đ) */
+.movie-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 10px 30px rgba(229, 9, 20, 0.4);
+}
+
+/* Scroll Reveal: Ẩn ban đầu để JS kích hoạt (1.0đ) */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.movie-card img {
+    width: 100%;
+    height: 300px; /* Cố định chiều cao ảnh để các card bằng nhau */
+    object-fit: cover; /* Cắt ảnh thông minh để không bị bóp méo */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+.movie-card img {
+    width: 100%;
+    height: 350px; /* Cố định chiều cao */
+    object-fit: cover; /* Giúp ảnh không bị méo khi co giãn */
+    border-radius: 8px;
+    background-color: #333; /* Tạo nền tối trong lúc đợi ảnh tải */
+    display: block;
+}
+.movie-card img {
+    width: 100%;
+    height: 350px; /* Cố định chiều cao card phim */
+    object-fit: cover; /* Cắt ảnh tự động để không bị méo */
+    border-radius: 8px;
+    display: block;
+    background-color: #222; /* Màu nền chờ khi ảnh chưa tải xong */
+}
+.movie-card img {
+    width: 100%;
+    height: 400px; /* Tăng chiều cao để poster trông dài và chuyên nghiệp hơn */
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: transform 0.5s ease;
+}
+
+/* Hiệu ứng Hover Card (0.5đ) */
+.movie-card:hover {
+    transform: translateY(-15px); /* Thẻ nổi lên đúng yêu cầu */
+    box-shadow: 0 15px 35px rgba(229, 9, 20, 0.6); /* Đổ bóng đỏ rực rỡ */
+}
+
+.movie-card:hover img {
+    transform: scale(1.05); /* Ảnh phóng to nhẹ bên trong thẻ */
+}
+.movie-card img {
+    width: 100%;
+    height: 400px; 
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.movie-card:hover {
+    transform: translateY(-15px) scale(1.03); /* Phóng to nhẹ và nổi lên */
+    box-shadow: 0 15px 30px rgba(229, 9, 20, 0.5); /* Đổ bóng màu đỏ thương hiệu */
+}
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Hiệu ứng mờ dần (Fade) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 10;
+}
